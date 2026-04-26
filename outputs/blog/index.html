@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Trust Hijacking Exposed</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        .header a {
+            color: #e94560;
+            text-decoration: none;
+        }
+        .nav {
+            background: #0f3460;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 15px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        .nav a:hover { background: rgba(255,255,255,0.1); }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+        .blog-post {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .blog-post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .blog-post h2 {
+            margin: 0 0 10px 0;
+            font-size: 22px;
+            color: #1a1a2e;
+        }
+        .blog-post h2 a {
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        .blog-post h2 a:hover {
+            color: #e94560;
+        }
+        .blog-post .date {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+        .blog-post .excerpt {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .blog-post .read-more {
+            display: inline-block;
+            color: #e94560;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .blog-post .read-more:hover {
+            text-decoration: underline;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .badge-new { background: #e3f2fd; color: #1565c0; }
+        .badge-update { background: #e8f5e9; color: #2e7d32; }
+        .badge-legal { background: #fff3e0; color: #ef6c00; }
+        .footer {
+            background: #1a1a2e;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 30px;
+            font-size: 13px;
+        }
+        .footer a { color: #e94560; }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1><a href="../index.html">← Trust Hijacking Exposed</a></h1>
+    </div>
+    
+    <div class="nav">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Blog</a>
+        <a href="../PRESS_RELEASE_SERIES_EXTENDED.html">Press Releases</a>
+        <a href="../JOURNALIST_PITCH_LETTER.html">Media</a>
+        <a href="../LEGISLATIVE_TESTIMONY_OPED.html">Take Action</a>
+    </div>
+    
+    <div class="container">
+        <h2 style="color: #e94560; border-bottom: 3px solid #e94560; padding-bottom: 10px;">BLOG POSTS</h2>
+        
+        <!-- BLOG POST LIST STARTS HERE -->
+        
+        <div class="blog-post">
+            <span class="badge badge-new">NEW</span>
+            <h2><a href="welcome.html">Welcome to Trust Hijacking Exposed</a></h2>
+            <div class="date">April 25, 2025</div>
+            <div class="excerpt">This site documents a landmark case before the Pennsylvania Supreme Court that exposes how trust assets can be stolen through procedural manipulation and failure to notify the real beneficiaries.</div>
+            <a href="welcome.html" class="read-more">Read More →</a>
+        </div>
+        
+        <div class="blog-post">
+            <span class="badge badge-legal">HOW IT WORKS</span>
+            <h2><a href="how-it-happened.html">How to Hijack a Trust in Pennsylvania: A Step-by-Step Guide</a></h2>
+            <div class="date">April 25, 2025</div>
+            <div class="excerpt">The disturbingly simple process that allows strangers to seize control of family trusts through Orphans' Court—with no notice to all beneficiaries.</div>
+            <a href="how-it-happened.html" class="read-more">Read More →</a>
+        </div>
+        
+        <div class="blog-post">
+            <span class="badge badge-update">VICTIMS</span>
+            <h2><a href="ten-heirs-one-notice.html">Ten Heirs, One Notice: The Victims' Story</a></h2>
+            <div class="date">April 25, 2025</div>
+            <div class="excerpt">How nine trust beneficiaries were kept in the dark while a stranger took control of their family's assets—with the court's blessing.</div>
+            <a href="ten-heirs-one-notice.html" class="read-more">Read More →</a>
+        </div>
+        
+        <div class="blog-post">
+            <span class="badge badge-new">UPDATE</span>
+            <h2><a href="supreme-court-pending.html">Three Courts, Three Years: Supreme Court Petition Pending</a></h2>
+            <div class="date">April 25, 2025</div>
+            <div class="excerpt">After three years of litigation, the case has reached the Pennsylvania Supreme Court. Here's what happens next.</div>
+            <a href="supreme-court-pending.html" class="read-more">Read More →</a>
+        </div>
+        
+        <!-- BLOG POST LIST ENDS HERE -->
+        
+    </div>
+    
+    <div class="footer">
+        <p>Miriam Roth Mandel, Pro Se | Case No. 1409 EDA 2024 | Superior Court of Pennsylvania</p>
+        <p style="margin-top: 10px;"><a href="../index.html">← Back to Main Site</a></p>
+    </div>
+</body>
+</html>
