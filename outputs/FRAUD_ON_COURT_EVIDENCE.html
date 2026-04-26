@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud on the Court Evidence — The Lawyers</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 32px;
+            margin: 0 0 10px 0;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        .hero .tagline {
+            font-size: 18px;
+            color: #e94560;
+            font-style: italic;
+        }
+        .nav {
+            background: #0f3460;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 15px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .nav a.active {
+            background: #e94560;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #e94560;
+            border-bottom: 3px solid #e94560;
+            padding-bottom: 10px;
+            margin: 0 0 25px 0;
+        }
+        .intro-box {
+            background: white;
+            border-left: 4px solid #e94560;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .intro-box p {
+            margin: 0 0 15px 0;
+        }
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+        .lawyers-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .lawyers-nav a {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #0f3460;
+            color: #0f3460;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .lawyers-nav a:hover {
+            background: #0f3460;
+            color: white;
+        }
+        .lawyers-nav a.active {
+            background: #e94560;
+            border-color: #e94560;
+            color: white;
+        }
+        .document-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .document-header {
+            background: #1a1a2e;
+            color: white;
+            padding: 20px 25px;
+        }
+        .document-header h3 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+        .document-header .date {
+            color: #e94560;
+            font-size: 14px;
+        }
+        .document-header .recipients {
+            color: #a0a0a0;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .document-body {
+            padding: 25px;
+        }
+        .document-body h4 {
+            color: #1a1a2e;
+            margin: 20px 0 10px 0;
+            font-size: 16px;
+        }
+        .document-body h4:first-child {
+            margin-top: 0;
+        }
+        .document-body ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        .document-body li {
+            margin-bottom: 8px;
+        }
+        .highlight-box {
+            background: #ffebee;
+            border-left: 4px solid #e94560;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .legal-citation {
+            background: #f5f5f5;
+            padding: 10px 15px;
+            font-family: monospace;
+            font-size: 14px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .quote-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px 25px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .stat-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 36px;
+            color: #e94560;
+            font-weight: bold;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .timeline-date {
+            min-width: 120px;
+            font-weight: bold;
+            color: #e94560;
+        }
+        .timeline-content h4 {
+            margin: 0 0 5px 0;
+            color: #1a1a2e;
+        }
+        .timeline-content p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .footer {
+            background: #1a1a2e;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 30px;
+            font-size: 13px;
+        }
+        .footer a {
+            color: #e94560;
+        }
+        .consequences-box {
+            background: #1a1a2e;
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .consequences-box h4 {
+            color: #e94560;
+            margin: 0 0 15px 0;
+        }
+        .consequences-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .consequences-box li {
+            margin-bottom: 8px;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<div class="hero">
+    <h1>Fraud on the Court Evidence</h1>
+    <div class="tagline">Formal Legal Notices to Opposing Counsel</div>
+</div>
+
+<div class="nav">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#story">The Story</a>
+    <a href="../index.html#press-releases">Press Releases</a>
+    <a href="../index.html#legal">Legal Documents</a>
+    <a href="../index.html#media-plan">Media Plan</a>
+    <a href="../index.html#take-action">Take Action</a>
+    <a href="blog/index.html">Blog</a>
+    <a href="THE_LAWYERS.html" class="active">The Lawyers</a>
+</div>
+
+<div class="container">
+
+<div class="lawyers-nav">
+    <a href="THE_LAWYERS.html">Fraud on the Court</a>
+    <a href="FRAUD_ON_COURT_EVIDENCE.html" class="active">Evidence Letters</a>
+    <a href="INTIMIDATION_TACTICS.html">Intimidation Tactics</a>
+</div>
+
+<div class="section">
+    <div class="section-title">Overview</div>
+    
+    <div class="intro-box">
+        <p><strong>Three formal legal notices were sent to opposing counsel documenting fraud on the court and placing them on notice of their personal liability.</strong></p>
+        <p>These letters establish the "knowledge element" required for aiding and abetting fraud. After receiving these notices, any continued participation in the fraudulent scheme constitutes knowing participation, not innocent representation.</p>
+    </div>
+    
+    <div class="stat-grid">
+        <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Formal Notices</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Unserved Beneficiaries</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">$21M+</div>
+            <div class="stat-label">Potential Liability</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">70</div>
+            <div class="stat-label">Years Criminal Exposure</div>
+        </div>
+    </div>
+</div>
+
+<!-- Document 1: February 19, 2026 Letter -->
+<div class="document-card">
+    <div class="document-header">
+        <h3>Defective Service — Failure to Serve Ten Indispensable Party Plaintiffs</h3>
+        <div class="date">February 19, 2026</div>
+        <div class="recipients">To: Paul C. Troy, Esquire & Matthew P. Lynn, Esquire | Kane, Pugh, Knoell, Troy & Kramer LLP</div>
+    </div>
+    <div class="document-body">
+        <h4>I. The Ten Indispensable Party Plaintiffs Never Served</h4>
+        <p>Paragraph 18 of the Complaint expressly designates ten individuals as "Indispensable Party Plaintiffs" whose rights are "indispensably affected by this action":</p>
+        <ul>
+            <li>Aliza Bancoff-Mandel</li>
+            <li>Corey Mandel</li>
+            <li>Wendy Mandel</li>
+            <li>Riley Mandel</li>
+            <li>Gracie Mandel</li>
+            <li>Allyson Jones</li>
+            <li>Lee Roth (profoundly disabled beneficiary)</li>
+            <li>Elaina Roth (disabled older adult beneficiary)</li>
+            <li>Barbara Brennan</li>
+            <li>Marlene Rothenberg</li>
+        </ul>
+        
+        <h4>II. Four Filings — None Served on Indispensable Parties</h4>
+        <div class="highlight-box">
+            Pennsylvania Rule of Civil Procedure 440(a): "Copies of all legal papers other than original process filed in an action shall be served simultaneously with the filing on every other party to the action."
+        </div>
+        
+        <p><strong>The four filings with no Certificate of Service on any Indispensable Party Plaintiff:</strong></p>
+        <ol>
+            <li>Preliminary Objections and Brief in Support (January 12, 2026)</li>
+            <li>Motion for Protective Order (February 5, 2026)</li>
+            <li>Praecipe for Determination (February 9, 2026)</li>
+            <li>Motion to Strike Plaintiff's Supplemental Brief (February 11, 2026)</li>
+        </ol>
+        
+        <h4>III. Legal Consequences</h4>
+        <div class="quote-box">
+            "Failure to join an indispensable party deprives the court of subject matter jurisdiction, rendering all orders void ab initio."
+            <div style="text-align: right; font-size: 13px;">— Simone v. Alam, 333 A.3d 359 (Pa. 2025)</div>
+        </div>
+        
+        <div class="consequences-box">
+            <h4>Consequences of Failure to Serve:</h4>
+            <ul>
+                <li>Each of the four filings is <strong>void ab initio</strong></li>
+                <li>The February 18, 2026 Order must be <strong>vacated</strong></li>
+                <li>Every averment in the Complaint is <strong>deemed admitted</strong> under Pa.R.Civ.P. 1029(b)</li>
+                <li>Violation of Pa.R.P.C. 3.3 and 8.4 — false statements to tribunal</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Document 2: February 3, 2026 Letter -->
+<div class="document-card">
+    <div class="document-header">
+        <h3>Notice of Malfeasance by Partners Paul Troy and Associate Matthew Lynn</h3>
+        <div class="date">February 3, 2026</div>
+        <div class="recipients">To: William H. Pugh, V, Esq., George H. Knoell, III, Esq., Andrew J. Kramer, Esq. | Kane, Pugh, Knoell, Troy & Kramer LLP</div>
+    </div>
+    <div class="document-body">
+        <h4>I. Summary of Misconduct</h4>
+        <p>Since August 25, 2025, Messrs. Troy and Lynn have knowingly aided and abetted their clients in:</p>
+        <ol>
+            <li>Fraud upon the court in Case No. 444-2023-OC, Delaware County Orphans' Court</li>
+            <li>Financial exploitation of three older adults under 18 Pa.C.S. § 3922.1:
+                <ul>
+                    <li>Miriam Roth Mandel (68 years old)</li>
+                    <li>Lee Roth (67 years old, profoundly disabled)</li>
+                    <li>Elaina Roth (60 years old, disabled)</li>
+                </ul>
+            </li>
+            <li>Financial exploitation of two care-dependent persons</li>
+            <li>Violation of mandatory duty to report fraud under Pa.R.P.C. 3.3(b)</li>
+        </ol>
+        
+        <h4>II. The Fraud Upon the Court</h4>
+        <ul>
+            <li><strong>Perkins' Self-Contradictory Petition:</strong> Filed as "Proposed Trustee" but called himself "Trustee" 22 times in the body</li>
+            <li><strong>Failure to Serve 12 Indispensable Beneficiaries:</strong> No affidavits of service exist</li>
+            <li><strong>Fabricated Certificate of Service:</strong> Anomalous certificate with NO NUMBER STAMP — inserted after the fact</li>
+            <li><strong>False Claim to Be Trustee:</strong> When there was already an active trustee (Miriam Roth Mandel)</li>
+        </ul>
+        
+        <h4>III. Criminal Exposure</h4>
+        <div class="consequences-box">
+            <h4>Under 18 Pa.C.S. § 3922.1 — Financial Exploitation of Older Adults:</h4>
+            <ul>
+                <li><strong>Felony 1st Degree:</strong> Exploitation of Lee and Elaina as older adults (20 years imprisonment each)</li>
+                <li><strong>Felony 2nd Degree:</strong> Exploitation of Miriam as older adult (10 years imprisonment)</li>
+                <li><strong>Felony 1st Degree:</strong> Course of conduct affecting multiple older adults (20 years)</li>
+                <li><strong>Felony 1st Degree:</strong> Exploitation of care-dependent persons (20 years)</li>
+            </ul>
+            <p style="margin-top: 15px; font-weight: bold; color: #e94560;">Total potential criminal exposure: 70 years imprisonment</p>
+        </div>
+        
+        <h4>IV. Civil Liability</h4>
+        <ul>
+            <li>Compensatory damages: $846,000+</li>
+            <li>Treble damages under Dragonetti Act, UTPCPL, RICO</li>
+            <li>Punitive damages (up to 3x compensatory after trebling)</li>
+            <li>Attorney fees (mandatory under multiple statutes)</li>
+        </ul>
+        <div class="highlight-box">
+            Total potential civil exposure: $21,384,000+
+        </div>
+    </div>
+</div>
+
+<!-- Document 3: April 3, 2026 Letter -->
+<div class="document-card">
+    <div class="document-header">
+        <h3>Formal Notice of Fundamental Jurisdictional Defects</h3>
+        <div class="date">April 3, 2026</div>
+        <div class="recipients">To: Paul C. Troy, Esquire, Matthew P. Lynn, Esquire, and James Schu, Esquire | Kane, Pugh, Knoell, Troy & Kramer LLP</div>
+    </div>
+    <div class="document-body">
+        <h4>I. The Fundamental Jurisdictional Defect</h4>
+        <div class="highlight-box">
+            Twelve Indispensable Parties Were Never Served or Joined
+        </div>
+        <p>The Mitchell E. and Karlie M. Roth Irrevocable 2002 Trust has <strong>twelve beneficiaries</strong>. Not one of them was served with process or joined as a party in Case 444-2023-OC. Not one of them was served with process or joined as a party in Case 2025-06422-PL.</p>
+        
+        <div class="quote-box">
+            "Failure to join an indispensable party deprives the court of subject matter jurisdiction, rendering all orders void ab initio."
+            <div style="text-align: right; font-size: 13px;">— Simone v. Alam, 333 A.3d 359 (Pa. 2025)</div>
+        </div>
+        
+        <h4>II. The Cascading Effect</h4>
+        <ol>
+            <li>Twelve beneficiaries never served or joined</li>
+            <li>Court lacked subject matter jurisdiction</li>
+            <li><strong>ALL orders in Case 444-2023-OC are void ab initio</strong></li>
+            <li>Perkins' purported appointment as trustee is void</li>
+            <li>Perkins had no authority to file Case 2025-06422-PL</li>
+            <li><strong>ALL orders in Case 2025-06422-PL are void ab initio</strong></li>
+            <li>The Judgment of Non Pros is void</li>
+            <li>Every order obtained is a nullity</li>
+        </ol>
+        
+        <h4>III. The Broken Chain of Trusteeship</h4>
+        <p>The sworn affidavit of William S. Cooper, Esquire, Head of Estate Planning at Fox Rothschild LLP, establishes:</p>
+        <ul>
+            <li>John S. Custer, Sr. was <strong>terminated as trustee for cause on May 19, 2014</strong></li>
+            <li>Custer had no authority to appoint Linnea Custer as successor trustee in 2017</li>
+            <li>Linnea Custer had no authority to act as trustee</li>
+            <li>Edward L. Perkins had no authority to act as trustee</li>
+        </ul>
+        
+        <h4>IV. Personal Exposure — Why This Letter Matters</h4>
+        <p>Under <strong>Marion v. Bryn Mawr Trust Co., 286 A.3d 241 (Pa. 2023)</strong>, and Restatement (Second) of Torts § 876(b), liability for aiding and abetting fraud requires:</p>
+        <ol>
+            <li>The primary party committed a tort ✅ (established)</li>
+            <li>The defendant had knowledge of the tort ✅ (satisfied by this letter)</li>
+            <li>The defendant provided substantial assistance ✅ (continued representation after notice)</li>
+        </ol>
+        
+        <h4>V. Professional Duties Violated</h4>
+        <div class="legal-citation">
+            Pa.R.P.C. 3.3(a)(1): "A lawyer shall not knowingly make a false statement of fact or law to a tribunal."
+        </div>
+        <div class="legal-citation">
+            Pa.R.P.C. 3.3(a)(3): "A lawyer shall not knowingly offer evidence that the lawyer knows to be false."
+        </div>
+        <div class="legal-citation">
+            Pa.R.P.C. 8.4(c): "It is professional misconduct for a lawyer to engage in conduct involving dishonesty, fraud, deceit or misrepresentation."
+        </div>
+        <div class="legal-citation">
+            Pa.R.P.C. 8.4(d): "It is professional misconduct for a lawyer to engage in conduct that is prejudicial to the administration of justice."
+        </div>
+        
+        <h4>VI. Federal Exposure</h4>
+        <p>A federal civil rights complaint is being prepared alleging:</p>
+        <ul>
+            <li>Violation of 42 U.S.C. § 1983 — deprivation of constitutional rights under color of law</li>
+            <li>Violation of 18 U.S.C. § 1962 (RICO) — pattern of racketeering activity</li>
+            <li>Common law fraud and conspiracy</li>
+            <li>Aiding and abetting fraud under Restatement (Second) of Torts § 876(b)</li>
+        </ul>
+        
+        <div class="highlight-box">
+            This letter will be Exhibit A to the federal complaint, establishing actual written notice of the jurisdictional defects.
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Key Legal Authorities Cited</div>
+    
+    <div class="intro-box">
+        <h4>Pennsylvania Supreme Court:</h4>
+        <ul>
+            <li><strong>Simone v. Alam, 333 A.3d 359 (Pa. 2025)</strong> — Failure to join indispensable party = void ab initio</li>
+            <li><strong>Sprague v. Casey, 520 Pa. 38, 550 A.2d 184 (Pa. 1988)</strong> — Four-part indispensable party test</li>
+            <li><strong>LeFlar v. Gulf Creek Indus. Park No. 2, 515 A.2d 875, 879 (Pa. 1986)</strong> — Subject matter jurisdiction may be raised at any time</li>
+            <li><strong>Glen-Gery Corp. v. Zoning Hearing Board, 589 Pa. 135, 907 A.2d 1033 (Pa. 2006)</strong> — Void ab initio = void for all time</li>
+            <li><strong>Marion v. Bryn Mawr Trust Co., 286 A.3d 241 (Pa. 2023)</strong> — Aiding and abetting fraud standard</li>
+        </ul>
+        
+        <h4>United States Supreme Court:</h4>
+        <ul>
+            <li><strong>Mullane v. Central Hanover Bank & Trust Co., 339 U.S. 306 (1950)</strong> — Constitutional right to notice</li>
+            <li><strong>Hansberry v. Lee, 311 U.S. 32 (1940)</strong> — Absent parties cannot be bound by judgment</li>
+        </ul>
+        
+        <h4>Pennsylvania Statutes:</h4>
+        <ul>
+            <li><strong>20 Pa.C.S. § 711</strong> — Orphans' Court mandatory jurisdiction over ALL persons interested in a trust</li>
+            <li><strong>20 Pa.C.S. § 7780.3</strong> — Trustee duty to inform ALL qualified beneficiaries</li>
+            <li><strong>18 Pa.C.S. § 3922.1</strong> — Financial exploitation of older adults (criminal)</li>
+            <li><strong>Pa.R.C.P. 2227</strong> — Joinder of indispensable parties is mandatory</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+    <p>Miriam Roth Mandel, Pro Se | Case No. 1409 EDA 2024 | Superior Court of Pennsylvania</p>
+    <p style="margin-top: 10px;">"Failure to join an indispensable party deprives the court of subject matter jurisdiction, rendering all orders void ab initio." — Simone v. Alam, 333 A.3d 359 (Pa. 2025)</p>
+</div>
+
+</body>
+</html>
