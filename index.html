@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Hijacking Exposed — Pennsylvania Court System Vulnerability</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin: 0 0 16px 0;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        .hero .tagline {
+            font-size: 20px;
+            color: #e94560;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .hero .subtitle {
+            font-size: 14px;
+            color: #a0a0a0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .nav {
+            background: #0f3460;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 15px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #e94560;
+            border-bottom: 3px solid #e94560;
+            padding-bottom: 10px;
+            margin: 0 0 25px 0;
+        }
+        .intro-box {
+            background: white;
+            border-left: 4px solid #e94560;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .intro-box p {
+            margin: 0 0 15px 0;
+        }
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+            color: #1a1a2e;
+        }
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin: 0 0 15px 0;
+        }
+        .card-links {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: opacity 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.85;
+        }
+        .btn-pdf {
+            background: #e94560;
+            color: white;
+        }
+        .btn-html {
+            background: #1a1a2e;
+            color: white;
+        }
+        .btn-md {
+            background: #0f3460;
+            color: white;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .badge-hot {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+        .badge-new {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #90caf9;
+        }
+        .case-info {
+            background: #1a1a2e;
+            color: white;
+            padding: 25px 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .case-info h3 {
+            margin: 0 0 15px 0;
+            color: #e94560;
+        }
+        .case-info p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+        .case-info strong {
+            color: #a0a0a0;
+        }
+        .quote-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px 25px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .footer {
+            background: #1a1a2e;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 30px;
+            font-size: 13px;
+        }
+        .footer a {
+            color: #e94560;
+        }
+        .press-series {
+            counter-reset: press-count;
+        }
+        .press-card {
+            position: relative;
+            padding-left: 50px;
+        }
+        .press-card::before {
+            counter-increment: press-count;
+            content: counter(press-count);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background: #e94560;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 26px;
+            }
+            .hero .tagline {
+                font-size: 16px;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<div class="hero">
+    <h1>The Money You Leave Your Children<br>May Never Reach Them</h1>
+    <div class="tagline">"This Actually Happened."</div>
+    <div class="subtitle">How anyone in Pennsylvania can walk into Orphans' Court claiming to be a "proposed trustee," nominate themselves, and walk out with control of your family trust—whether it's $50,000 or $50 million.</div>
+</div>
+
+<div class="nav">
+    <a href="#story">The Story</a>
+    <a href="#press-releases">Press Releases</a>
+    <a href="#legal">Legal Documents</a>
+    <a href="#media-plan">Media Plan</a>
+    <a href="#take-action">Take Action</a>
+</div>
+
+<div class="container">
+
+<div class="section" id="story">
+    <div class="section-title">The Story</div>
+    
+    <div class="intro-box">
+        <p><strong>In Pennsylvania, a stranger can walk into Orphans' Court, file a petition claiming to be a "proposed trustee," and walk out with control of your family's trust assets.</strong></p>
+        <p>No hearing. No notice to all beneficiaries. No verification that the trust is even vacant. Just a judge's signature and—like magic—your inheritance belongs to someone else.</p>
+        <p>This isn't a hypothetical. <em>This actually happened.</em></p>
+    </div>
+
+    <div class="case-info">
+        <h3>Case Background</h3>
+        <p><strong>Trust:</strong> Mitchell E. and Karlie M. Roth Irrevocable Trust</p>
+        <p><strong>Court:</strong> Delaware County Orphans' Court, Pennsylvania</p>
+        <p><strong>Appellate Docket:</strong> No. 1409 EDA 2024 (Superior Court of Pennsylvania)</p>
+        <p><strong>Supreme Court Docket:</strong> PAA Filed — Eastern District</p>
+        <p><strong>Core Issue:</strong> Orphans' Court orders issued without jurisdiction—failure to join indispensable parties (all 10 trust beneficiaries) as required by Pa.R.C.P. 2227(b)</p>
+    </div>
+
+    <div class="quote-box">
+        "Ten heirs. One notice. The other nine beneficiaries—including the actual trust beneficiaries—never received notice. The court proceeded anyway. The result: a stranger now controls the trust assets."
+    </div>
+</div>
+
+<div class="section" id="press-releases">
+    <div class="section-title">Press Release Series</div>
+    <p style="margin-bottom: 20px; color: #666;">A six-part series that progressively tells the whole story—from the human impact to the systemic problem to the solution.</p>
+    
+    <div class="card-grid press-series">
+        <div class="card press-card">
+            <span class="badge badge-hot">OPENER</span>
+            <h3>The Money You Leave Your Children May Never Reach Them</h3>
+            <p>How a Pennsylvania "trust hijacking" scheme exposes a dangerous vulnerability in the state's probate system—and threatens every family's inheritance.</p>
+            <div class="card-links">
+                <a class="btn btn-pdf" href="PRESS_RELEASE_SERIES.pdf" target="_blank">📄 Full Series PDF</a>
+            </div>
+        </div>
+        
+        <div class="card press-card">
+            <span class="badge badge-new">HOW-TO</span>
+            <h3>How to Hijack a Trust in Pennsylvania: A Step-by-Step Guide</h3>
+            <p>The disturbingly simple process that allows strangers to seize control of family trusts through Orphans' Court—with no notice to all beneficiaries.</p>
+            <div class="card-links">
+                <a class="btn btn-pdf" href="PRESS_RELEASE_SERIES.pdf" target="_blank">📄 Full Series PDF</a>
+            </div>
+        </div>
+        
+        <div class="card press-card">
+            <span class="badge badge-new">VICTIMS</span>
+            <h3>Ten Heirs, One Notice</h3>
+            <p>How nine trust beneficiaries were kept in the dark while a stranger took control of their family's assets—with the court's blessing.</p>
+            <div class="card-links">
+                <a class="btn btn-pdf" href="PRESS_RELEASE_SERIES.pdf" target="_blank">📄 Full Series PDF</a>
+            </div>
+        </div>
+        
+        <div class="card press-card">
+            <span class="badge badge-new">SYSTEM</span>
+            <h3>When Courts Rubber-Stamp Trust Hijackings</h3>
+            <p>How procedural shortcuts and judicial deference created a system where trust predators operate with impunity—and what it means for Pennsylvania families.</p>
+            <div class="card-links">
+                <a class="btn btn-pdf" href="PRESS_RELEASE_SERIES.pdf" target="_blank">📄 Full Series PDF</a>
+            </div>
+        </div>
+        
+        <div class="card press-card">
+            <span class="badge badge-new">PATTERN</span>
+            <h3>$36 Billion Stolen Annually Through "Legal" Court Proceedings</h3>
+            <p>Elder financial exploitation is now a $36.5 billion annual problem—and Pennsylvania's courts may be making it easier, not harder, for predators.</p>
+            <div class="card-links">
+                <a class="btn btn-pdf" href="PRESS_RELEASE_SERIES.pdf" target="_blank">📄 Full Series PDF</a>
+            </div>
+        </div>
+        
+        <div class="card press-card">
+            <span class="badge badge-hot">SOLUTION</span>
+            <h3>Closing the Courthouse Door to Trust Predators</h3>
+            <p>Common-sense reforms that would protect Pennsylvania families from trust hijacking—while preserving legitimate trust administration.</p>
+            <div class="card-links">
+                <a class="btn btn-pdf" href="PRESS_RELEASE_SERIES.pdf" target="_blank">📄 Full Series PDF</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="legal">
+    <div class="section-title">Legal Documents</div>
+    
+    <div class="two-col">
+        <div>
+            <div class="card">
+                <h3>Petition for Allowance of Appeal</h3>
+                <p>Supreme Court of Pennsylvania, Eastern District. Challenging jurisdictional defects in Orphans' Court proceedings.</p>
+                <div class="card-links">
+                    <a class="btn btn-pdf" href="PAA_SUPREME_COURT.pdf" target="_blank">📄 PDF</a>
+                    <a class="btn btn-html" href="PAA_SUPREME_COURT.html" target="_blank">HTML</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>AG Elder Exploitation Complaint</h3>
+                <p>Formal complaint to Pennsylvania Attorney General Elder Exploitation Section regarding the trust hijacking scheme.</p>
+                <div class="card-links">
+                    <a class="btn btn-pdf" href="AG_ELDER_EXPLOITATION_COMPLAINT.pdf" target="_blank">📄 PDF</a>
+                    <a class="btn btn-html" href="AG_ELDER_EXPLOITATION_COMPLAINT.html" target="_blank">HTML</a>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="card">
+                <h3>Motion to Stay Remittal</h3>
+                <p>Superior Court of Pennsylvania, No. 1409 EDA 2024. Preventing return of record to Orphans' Court pending PAA.</p>
+                <div class="card-links">
+                    <a class="btn btn-pdf" href="MOTION_TO_STAY_REMITTAL.pdf" target="_blank">📄 PDF</a>
+                    <a class="btn btn-html" href="MOTION_TO_STAY_REMITTAL.html" target="_blank">HTML</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Standalone Press Release</h3>
+                <p>Ready-to-send press release for immediate media distribution.</p>
+                <div class="card-links">
+                    <a class="btn btn-pdf" href="PRESS_RELEASE.pdf" target="_blank">📄 PDF</a>
+                    <a class="btn btn-html" href="PRESS_RELEASE.html" target="_blank">HTML</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="media-plan">
+    <div class="section-title">Media & Social Media</div>
+    
+    <div class="two-col">
+        <div class="card">
+            <h3>Comprehensive Media Exposure Plan</h3>
+            <p>10-section strategic plan for exposing the trust hijacking scheme through press, regulators, and social media.</p>
+            <div class="card-links">
+                <a class="btn btn-pdf" href="MEDIA_EXPOSURE_PLAN.pdf" target="_blank">📄 PDF</a>
+                <a class="btn btn-md" href="MEDIA_EXPOSURE_PLAN.md" target="_blank">Markdown</a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>Twitter/X Thread Series</h3>
+            <p>Four complete thread series (40+ tweets) exposing the trust hijacking scheme and calling for reform.</p>
+            <div class="card-links">
+                <a class="btn btn-md" href="TWITTER_THREADS.md" target="_blank">View Threads</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="take-action">
+    <div class="section-title">Take Action</div>
+    
+    <div class="intro-box">
+        <p><strong>For Journalists:</strong> Contact for interviews, documentation, and court filings. Full case file available upon request.</p>
+        <p><strong>For Legislators:</strong> Legislative testimony and op-ed drafts available. Common-sense reforms outlined in press release series.</p>
+        <p><strong>For Victims:</strong> If you or a loved one has been affected by trust hijacking in Pennsylvania, resources are available.</p>
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+    <p>Miriam Roth Mandel, Pro Se | Case No. 1409 EDA 2024 | Superior Court of Pennsylvania</p>
+    <p style="margin-top: 10px;">Documentation compiled April 2026 | <a href="index.html">Legal Filings Index</a></p>
+</div>
+
+</body>
+</html>
