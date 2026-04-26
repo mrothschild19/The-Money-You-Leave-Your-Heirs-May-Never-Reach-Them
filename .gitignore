@@ -1,0 +1,10 @@
+# Ignore temporary and generated files
+*.py
+*.txt
+!.gitignore
+!README.md
+.agent_hooks/
+.browser_data/
+.psiphon_data/
+summarized_conversations/
+todo.md

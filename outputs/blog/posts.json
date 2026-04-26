@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": "welcome",
+      "title": "Welcome to Trust Hijacking Exposed",
+      "date": "2026-04-25",
+      "author": "Miriam Roth Mandel",
+      "excerpt": "This site documents a Pennsylvania family's fight for justice after a stranger walked into Orphans' Court and walked out with control of their family trust.",
+      "tags": ["introduction", "trust hijacking", "pennsylvania"],
+      "featured": true
+    },
+    {
+      "id": "how-it-happened",
+      "title": "How to Hijack a Trust in Pennsylvania",
+      "date": "2026-04-25",
+      "author": "Miriam Roth Mandel",
+      "excerpt": "The disturbingly simple process that allows strangers to seize control of family trusts through Orphans' Court—with no notice to all beneficiaries.",
+      "tags": ["how-to", "orphans court", "legal loophole"],
+      "featured": true
+    },
+    {
+      "id": "ten-heirs-one-notice",
+      "title": "Ten Heirs, One Notice",
+      "date": "2026-04-25",
+      "author": "Miriam Roth Mandel",
+      "excerpt": "How nine trust beneficiaries were kept in the dark while a stranger took control of their family's assets—with the court's blessing.",
+      "tags": ["victims", "family", "beneficiaries"],
+      "featured": false
+    },
+    {
+      "id": "supreme-court-pending",
+      "title": "Three Courts, Three Years: Supreme Court Decision Pending",
+      "date": "2026-04-25",
+      "author": "Miriam Roth Mandel",
+      "excerpt": "The Pennsylvania Supreme Court is considering whether to grant allowance of appeal in a case that will determine whether court orders issued without jurisdiction are void.",
+      "tags": ["supreme court", "appeal", "jurisdiction"],
+      "featured": true
+    }
+  ]
+}
