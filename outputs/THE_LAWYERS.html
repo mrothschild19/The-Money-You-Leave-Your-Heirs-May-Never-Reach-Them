@@ -241,6 +241,31 @@
             margin: 0;
             font-style: italic;
         }
+        .lawyers-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .lawyers-nav a {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #0f3460;
+            color: #0f3460;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .lawyers-nav a:hover {
+            background: #0f3460;
+            color: white;
+        }
+        .lawyers-nav a.active {
+            background: #e94560;
+            border-color: #e94560;
+            color: white;
+        }
         .footer {
             background: #1a1a2e;
             color: #a0a0a0;
@@ -293,6 +318,11 @@
 </div>
 
 <div class="container">
+
+<div class="lawyers-nav">
+    <a href="THE_LAWYERS.html" class="active">Fraud on the Court</a>
+    <a href="INTIMIDATION_TACTICS.html">Intimidation Tactics</a>
+</div>
 
 <div class="section">
     <div class="section-title">Executive Summary</div>
