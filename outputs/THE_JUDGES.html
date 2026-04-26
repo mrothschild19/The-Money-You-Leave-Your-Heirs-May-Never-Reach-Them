@@ -110,48 +110,87 @@
         .intro-box p:last-child {
             margin-bottom: 0;
         }
-        .document-card {
+        
+        /* Tab Styles */
+        .tab-container {
             background: white;
             border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            border-left: 4px solid #0f3460;
+            overflow: hidden;
+            margin-bottom: 30px;
         }
-        .document-card h3 {
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            background: #1a1a2e;
+            border-bottom: 3px solid #e94560;
+        }
+        .tab-btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 20px;
+            background: transparent;
+            border: none;
+            color: #a0a0a0;
+            font-family: Georgia, serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -3px;
+        }
+        .tab-btn:hover {
+            background: rgba(233,69,96,0.1);
+            color: white;
+        }
+        .tab-btn.active {
+            background: rgba(233,69,96,0.15);
+            color: #e94560;
+            border-bottom-color: #e94560;
+        }
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-content h3 {
             color: #1a1a2e;
             margin: 0 0 10px 0;
-            font-size: 20px;
+            font-size: 22px;
         }
-        .document-card .date {
+        .tab-content .date {
             color: #e94560;
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 15px;
         }
-        .document-card .recipient {
+        .tab-content .recipient {
             background: #f0f0f0;
             padding: 10px 15px;
             border-radius: 5px;
             font-size: 14px;
             margin-bottom: 20px;
         }
-        .document-card .content {
+        .tab-content .content {
             line-height: 1.8;
             color: #444;
         }
-        .document-card .content h4 {
+        .tab-content .content h4 {
             color: #1a1a2e;
             margin: 25px 0 15px 0;
             font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .document-card .content ul {
+        .tab-content .content ul {
             margin: 15px 0;
             padding-left: 25px;
         }
-        .document-card .content li {
+        .tab-content .content li {
             margin-bottom: 10px;
         }
         .highlight-box {
@@ -181,7 +220,7 @@
             padding: 20px 25px;
             margin: 20px 0;
         }
-        .relief-list ol {
+        .relief-list ol, .relief-list ul {
             margin: 0;
             padding-left: 20px;
         }
@@ -213,6 +252,18 @@
             letter-spacing: 1px;
             margin-top: 5px;
         }
+        .grounds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .ground-item {
+            background: #f8f9fa;
+            border-left: 3px solid #0f3460;
+            padding: 12px 15px;
+            font-size: 14px;
+        }
         .footer {
             background: #1a1a2e;
             color: #a0a0a0;
@@ -235,7 +286,11 @@
             .container {
                 padding: 20px 15px;
             }
-            .document-card {
+            .tab-btn {
+                min-width: 100%;
+                text-align: left;
+            }
+            .tab-content {
                 padding: 20px;
             }
         }
@@ -269,7 +324,7 @@
         <!-- Statistics -->
         <div class="stats-grid">
             <div class="stat-box">
-                <div class="number">3</div>
+                <div class="number">6</div>
                 <div class="label">Formal Communications to President Judges</div>
             </div>
             <div class="stat-box">
@@ -281,8 +336,8 @@
                 <div class="label">Trust Assets Withheld from Beneficiaries</div>
             </div>
             <div class="stat-box">
-                <div class="number">8+ Months</div>
-                <div class="label">Pending Motions Without Ruling</div>
+                <div class="number">23</div>
+                <div class="label">Grounds for Judicial Reassignment</div>
             </div>
         </div>
         
@@ -290,183 +345,350 @@
         <div class="section" id="president-judges">
             <div class="section-title">President Judges</div>
             
-            <!-- Document 1: Motion to Wheatcraft -->
-            <div class="document-card">
-                <h3>Motion to President Judge Wheatcraft to Vacate All Judge Verwey Orders and Reassign Cases</h3>
-                <div class="date">Filed: November 23, 2025 | Chester County Court of Common Pleas | Case No. 2025-06422-PL</div>
-                
-                <div class="recipient">
-                    <strong>To:</strong> President Judge Wheatcraft, Chester County Court of Common Pleas
+            <!-- Tabbed Document Container -->
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'tab1')">Motion to Vacate Void Order (Oct 31, 2025)</button>
+                    <button class="tab-btn" onclick="openTab(event, 'tab2')">23 Grounds for Reassignment (Nov 3, 2025)</button>
+                    <button class="tab-btn" onclick="openTab(event, 'tab3')">New Evidence of Legal Error (Nov 21, 2025)</button>
+                    <button class="tab-btn" onclick="openTab(event, 'tab4')">Motion to Wheatcraft (Nov 23, 2025)</button>
+                    <button class="tab-btn" onclick="openTab(event, 'tab5')">Letter to Cartisano (Aug 11, 2025)</button>
+                    <button class="tab-btn" onclick="openTab(event, 'tab6')">Emergency Letter to Cartisano (Apr 13, 2026)</button>
                 </div>
                 
-                <div class="content">
-                    <h4>Summary of Relief Requested</h4>
+                <!-- Tab 1: Motion to Vacate Void Order -->
+                <div id="tab1" class="tab-content active">
+                    <h3>Motion to Exercise Sua Sponte Duty to Vacate Void Order</h3>
+                    <div class="date">October 31, 2025 | Delaware County Orphans' Court | Case No. 444-2023-OC</div>
                     
-                    <div class="relief-list">
+                    <div class="recipient">
+                        <strong>To:</strong> Honorable President Judge Linda Cartisano, Delaware County Orphans' Court
+                    </div>
+                    
+                    <div class="content">
+                        <div class="alert-box">
+                            <strong>Key Legal Authority:</strong> Motion brought pursuant to Pa.R.C.P. 1032(b), Tigue v. Basalyga (304 A.2d 119, Pa. 1973), and Commonwealth v. Starr (664 A.2d 1326, Pa. 1995).
+                        </div>
+                        
+                        <h4>Executive Summary: Three Simple Truths</h4>
+                        
+                        <div class="highlight-box">
+                            <strong>Truth #1: Perkins Had No Standing</strong><br>
+                            Edward L. Perkins filed a petition seeking court appointment as trustee. Pennsylvania law is crystal clear: only a "resigning trustee, current trustee, or beneficiary" may file such a petition. Perkins was none of these—he admitted it 22 times in his own petition by calling himself a "Proposed Trustee."
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <strong>Truth #2: 363 Binding Judicial Admissions Prove Everything</strong><br>
+                            Through systematic defaults across multiple proceedings, Respondents have made 363 binding judicial admissions that conclusively establish Perkins was never validly appointed, had no standing, made 22 false statements under oath, intentionally concealed evidence, and caused severe harm to vulnerable beneficiaries.
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <strong>Truth #3: The Order Is Void Ab Initio</strong><br>
+                            When a court lacks jurisdiction, any order it enters is void ab initio—void from the beginning, a nullity, having no legal effect whatsoever. The April 18, 2024 Order is void because the Court lacked subject matter jurisdiction, personal jurisdiction (12 parties never served), and territorial jurisdiction.
+                        </div>
+                        
+                        <h4>The Court's Mandatory Duty</h4>
+                        
+                        <div class="quote-box">
+                            "At any time upon its own motion or upon the motion of any party, the court shall strike off a judgment or any part thereof or any proceedings in an action if the court at any time lacks jurisdiction of the subject matter." — Pa.R.C.P. 1032(b) (emphasis added)
+                        </div>
+                        
+                        <p><strong>Three critical aspects:</strong></p>
+                        <ul>
+                            <li><strong>"SHALL"</strong> = Mandatory, not discretionary</li>
+                            <li><strong>"AT ANY TIME"</strong> = No time limit on challenging void orders</li>
+                            <li><strong>"UPON ITS OWN MOTION"</strong> = Court has sua sponte duty to act</li>
+                        </ul>
+                        
+                        <h4>Prayer for Relief</h4>
+                        <div class="relief-list">
+                            <ol>
+                                <li>VACATE the April 18, 2024 Order in its entirety as void ab initio</li>
+                                <li>DISMISS the underlying Petition for Appointment of Trustee for lack of standing</li>
+                                <li>RETURN the $800,000 in trust assets illegally seized in violation of automatic appellate stay</li>
+                                <li>RESTORE Miriam Roth Mandel as Trustee based on the November 8, 2015 Appointment</li>
+                                <li>REMOVE Edward L. Perkins and IMPOSE SANCTIONS</li>
+                                <li>PROTECT vulnerable beneficiaries with immediate distributions</li>
+                                <li>REFER for investigation to PA Attorney General and Disciplinary Board</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab 2: 23 Grounds for Reassignment -->
+                <div id="tab2" class="tab-content">
+                    <h3>Second Amended Motion for Administrative Reassignment</h3>
+                    <div class="date">November 3, 2025 | Chester County Court of Common Pleas | Case No. 2025-06422-PL</div>
+                    
+                    <div class="recipient">
+                        <strong>To:</strong> Honorable President Judge Mary Alice Wheatcroft, Chester County Court of Common Pleas
+                    </div>
+                    
+                    <div class="content">
+                        <div class="alert-box">
+                            <strong>23 Grounds for Administrative Reassignment</strong> from Judge Anthony T. Verwey based on demonstrated bias, false statements in court orders, and retaliatory conduct.
+                        </div>
+                        
+                        <h4>The Mandatory Recusal Framework</h4>
+                        <p>Pennsylvania law creates a mandatory three-step recusal process:</p>
                         <ol>
-                            <li>Reassign all civil actions brought by Plaintiff assigned to Judge Verwey to a neutral judge of the Chester County Court of Common Pleas.</li>
-                            <li>Vacate all orders, judgments, and rulings entered by Judge Verwey—including the judgment of non-pros, the sanctions order, and the dismissal of Linnea Roth's claims—on the ground that they are void ab initio (42 Pa.C.S. §§ 322(b)-(c); Pa.R.J.A. § 1901).</li>
-                            <li>Award reasonable attorney's fees and costs incurred by Plaintiff (and, where appropriate, to the co-defendant) (Rule 11, Pa.R.Civ.P. § 1032(b)).</li>
-                            <li>Impose monetary sanctions on Defendant Edward L. Perkins, Esq.: treble damages under the Dragonetti Act and statutory elder-abuse damages under 20 Pa.C.S. § 3501.</li>
-                            <li>Issue a permanent injunction prohibiting Defendant Perkins from filing any further pleadings, motions, or other filings in this matter (Rule 12(b)(6)).</li>
-                            <li>Enter a formal reprimand against Defendant Perkins in the Pennsylvania Attorney Disciplinary Board's records for violations of Rule 3.1 and Rule 8.4(c).</li>
-                            <li>Vacate the erroneous dismissal of the co-defendant who had no involvement with the Certificate of Merit or the Notice of Intent, and award that co-defendant reasonable attorney's fees and costs.</li>
-                            <li>Impose monetary sanctions on the Court for the errors, as authorized by Rule 11, In re Mazzoni, Bradley v. United States, and In re Barth.</li>
+                            <li><strong>Step 1: The Duty to Recuse</strong> — Rule 2.11(A) of the PA Code of Judicial Conduct mandates disqualification when impartiality might reasonably be questioned. The word "shall" makes this mandatory.</li>
+                            <li><strong>Step 2: Referral to Another Judge</strong> — Commonwealth v. Dip holds that a judge who is the subject of a recusal motion cannot adjudicate that motion.</li>
+                            <li><strong>Step 3: Reassignment Authority</strong> — 42 Pa.C.S. § 322(a) and Pa.R.J.A. 703 authorize the President-Judge to reassign cases.</li>
                         </ol>
+                        
+                        <h4>Summary of 23 Grounds</h4>
+                        
+                        <div class="grounds-grid">
+                            <div class="ground-item"><strong>Ground 1:</strong> False Statement - "Plaintiff Purports to Represent Trust"</div>
+                            <div class="ground-item"><strong>Ground 2:</strong> False Statement - "No Request for Consolidation"</div>
+                            <div class="ground-item"><strong>Ground 3:</strong> False Statement - "First Case Involving Plaintiff"</div>
+                            <div class="ground-item"><strong>Ground 4:</strong> False Statement - "No Statement of Errors"</div>
+                            <div class="ground-item"><strong>Ground 5:</strong> False Statement - "Plaintiff Was Not Slandered"</div>
+                            <div class="ground-item"><strong>Ground 6:</strong> False Statement - "20 Additional Non-Existent Citations"</div>
+                            <div class="ground-item"><strong>Ground 7:</strong> False Statement - "Failed to File Petition Under Rule 3051"</div>
+                            <div class="ground-item"><strong>Ground 8:</strong> Circular Reasoning - "No Recusal = No Reassignment"</div>
+                            <div class="ground-item"><strong>Ground 9:</strong> Retaliatory Timing of Sanctions Order</div>
+                            <div class="ground-item"><strong>Ground 10:</strong> 100% Adverse Ruling Rate on Meritorious Arguments</div>
+                            <div class="ground-item"><strong>Ground 11:</strong> Intercepted Motion Directed to President Judge</div>
+                            <div class="ground-item"><strong>Ground 12:</strong> Failure to Address ADA Accommodations</div>
+                            <div class="ground-item"><strong>Ground 13:</strong> Adversarial Relationship - Gawthrop Sued Movant in 2017</div>
+                            <div class="ground-item"><strong>Ground 14:</strong> Attorney-Client Relationships at Both Former Firms</div>
+                            <div class="ground-item"><strong>Ground 15:</strong> The Impossible Conflict - "Matter in Controversy"</div>
+                            <div class="ground-item"><strong>Ground 16:</strong> Defamatory Conduct - Failure to Verify</div>
+                            <div class="ground-item"><strong>Ground 17:</strong> Weaponizing Withdrawn Errors</div>
+                            <div class="ground-item"><strong>Ground 18:</strong> Ignored Personal Appeals to President Judge</div>
+                            <div class="ground-item"><strong>Ground 19:</strong> Violates PA Fundamental Policy (Merits Over Procedure)</div>
+                            <div class="ground-item"><strong>Ground 20:</strong> Vindictive and Retaliatory Orders</div>
+                            <div class="ground-item"><strong>Ground 21:</strong> Outrageous Double Standard on Deadlines</div>
+                            <div class="ground-item"><strong>Ground 22:</strong> Appearance of Campaign Finance Impropriety</div>
+                            <div class="ground-item"><strong>Ground 23:</strong> The Hazel-Atlas Doctrine: Fraud Upon the Court</div>
+                        </div>
+                        
+                        <h4>Relief Requested</h4>
+                        <div class="relief-list">
+                            <ol>
+                                <li>EXERCISING administrative authority to reassign all cases from Judge Verwey</li>
+                                <li>VACATING AS VOID AB INITIO all orders entered by Judge Verwey</li>
+                                <li>REINSTATING Movant's Complaint in its entirety</li>
+                                <li>REASSIGNING to another judge with no prior connection to parties</li>
+                                <li>STAYING all proceedings pending reassignment</li>
+                            </ol>
+                        </div>
                     </div>
-                    
-                    <h4>Key Legal Arguments</h4>
-                    
-                    <p>The motion was brought pursuant to <strong>42 Pa.C.S. §§ 322(b)-(c)</strong> and <strong>Pa.R.J.A. § 1901</strong>, seeking reassignment based on the appearance of bias demonstrated by Judge Verwey's statements and conduct, coupled with procedural defects that render continued assignment untenable.</p>
-                    
-                    <div class="quote-box">
-                        "The appearance of bias demonstrated by Judge Verwey's statements and conduct, coupled with the procedural defects identified herein, renders continued assignment to Judge Verwey untenable. An order of reassignment will preserve the integrity of the judicial process, conserve appellate resources and ensure that the parties receive a fair and impartial hearing."
-                    </div>
-                    
-                    <h4>Background Facts</h4>
-                    
-                    <ul>
-                        <li><strong>2002</strong> – The Mitchell E. and Karlie M. Roth Irrevocable Trust is created for the benefit of the Trustors' children, including two disabled beneficiaries, Lee Roth and Elaina Rothenberg.</li>
-                        <li><strong>2013</strong> – 2nd Trustee John Custer is terminated by Trustor for cause.</li>
-                        <li><strong>May 19, 2014</strong> – William Cooper, Esq., 3rd trustee, is removed by Trustors under 20 Pa.C.S. § 7772.</li>
-                        <li><strong>November 18, 2015</strong> – Trustors execute Trustee Appointment naming Miriam Roth Mandel as successor trustee.</li>
-                    </ul>
-                    
-                    <h4>Legal Authorities Cited</h4>
-                    
-                    <p>The motion relies on extensive legal authority including:</p>
-                    <ul>
-                        <li>42 Pa.C.S. §§ 322(b)-(c) (President-Judge authority)</li>
-                        <li>42 Pa.C.S. §§ 8351-8353 (Dragonetti Act)</li>
-                        <li>20 Pa.C.S. § 3501 (Elder-abuse statutes)</li>
-                        <li>20 Pa.C.S. §§ 7770-7773 (Fiduciary-duty law)</li>
-                        <li>Pa.C.J.C. Rule 2.11(A) (disqualification)</li>
-                        <li>Pa.C.J.C. Rule 2.3 (no bias)</li>
-                        <li>Bradley v. United States, 503 U.S. 527 (1992)</li>
-                        <li>In re Mazzoni, 202 Pa. Sup. Ct. 202 (2022)</li>
-                        <li>Munsingwear v. United States, 340 U.S. 36 (1950)</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Document 2: August 11, 2025 Letter -->
-            <div class="document-card">
-                <h3>Request for Ruling on Pending Motion to Vacate Recused Judge Durham's April 18, 2024 Court Order</h3>
-                <div class="date">August 11, 2025 | Delaware County Orphans' Court | Case: 444-2023-OC</div>
-                
-                <div class="recipient">
-                    <strong>To:</strong> The Honorable Judge Linda Cartisano, President Judge, Orphans Court Division, Delaware County Court of Common Pleas
                 </div>
                 
-                <div class="content">
-                    <div class="alert-box">
-                        <strong>Critical Issue:</strong> Motion pending for EIGHT (8) MONTHS without disposition. Interest in the amount of $127.00 per day is accruing to be paid from taxpayer's money every single day.
+                <!-- Tab 3: New Evidence of Legal Error -->
+                <div id="tab3" class="tab-content">
+                    <h3>Letter Regarding New Evidence of Legal Error by Judge Verwey</h3>
+                    <div class="date">November 21, 2025 | Chester County Court of Common Pleas</div>
+                    
+                    <div class="recipient">
+                        <strong>To:</strong> President Judge Ann Marie Wheatcroft, Chester County Court of Common Pleas
                     </div>
                     
-                    <h4>Summary</h4>
-                    <p>This letter respectfully requested consideration and ruling on the Motion to Vacate Court Order filed on January 10, 2025, which seeks to vacate the void court orders entered on April 18, 2024 and July 31, 2024.</p>
-                    
-                    <h4>Key Arguments</h4>
-                    
-                    <ul>
-                        <li>The continued delay in ruling on this motion represents a <strong>significant waste of judicial resources and taxpayer money</strong>, particularly given that the evidence presented demonstrates that the April 18, 2024 order is void ab initio.</li>
-                        <li>The Orphans Court remains obligated to correct its mistakes unless there is a valid appellate stay in effect.</li>
-                        <li>The mere pendency of appellate proceedings does not legally render existing and current motions moot, nor does it absolve the Court of its responsibility to address substantive challenges to orders that may be legally invalid.</li>
-                    </ul>
-                    
-                    <h4>Harm Caused by Delay</h4>
-                    
-                    <div class="highlight-box">
-                        <strong>The continued delay has resulted in Trust assets in the amount of over $800,000 being withheld from elderly special needs beneficiaries, causing them grave harm.</strong> These vulnerable individuals are being deprived of resources necessary for their care and wellbeing while this matter remains unresolved, creating an unconscionable situation that demands immediate judicial attention.
-                    </div>
-                    
-                    <h4>Documents Enclosed</h4>
-                    <ul>
-                        <li>January 10, 2025 Motion to Vacate</li>
-                        <li>August 1, 2025 Motion to Vacate for Fraud</li>
-                        <li>August 7, 2025 Request for Oral Hearing on Motion to Vacate</li>
-                    </ul>
-                    
-                    <div class="quote-box">
-                        "In totality they make an unassailable case for the post haste vacatur of the defective Court Orders."
+                    <div class="content">
+                        <div class="alert-box">
+                            <strong>Critical Discovery:</strong> New evidence demonstrates that Defendant's Notice of Intent to file a Judgment of Non-Pros was premature and violates Pennsylvania Rule of Civil Procedure § 237.1(a).
+                        </div>
+                        
+                        <h4>Timeline of Events</h4>
+                        <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+                            <tr style="background: #f0f0f0;">
+                                <td style="padding: 10px; border: 1px solid #ddd;"><strong>July 17, 2025</strong></td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Plaintiff filed the Complaint</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;"><strong>September 15, 2025</strong></td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Deadline for filing Certificate of Merit (COM)</td>
+                            </tr>
+                            <tr style="background: #f8d7da;">
+                                <td style="padding: 10px; border: 1px solid #ddd;"><strong>August 25, 2025</strong></td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Notice of Intent mailed BEFORE the COM deadline</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;"><strong>November 21, 2025</strong></td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Discovery that Notice was premature</td>
+                            </tr>
+                        </table>
+                        
+                        <h4>Legal Basis - Why the Notice Was Invalid</h4>
+                        
+                        <div class="quote-box">
+                            "No judgment of default shall be entered by the prothonotary unless the praecipe for entry includes a certification that a written notice of intention to file the praecipe was mailed... at least ten (10) days prior to the date of the filing of the praecipe." — Pa.R.C.P. § 237.1(a)
+                        </div>
+                        
+                        <p><strong>Key Legal Principles:</strong></p>
+                        <ul>
+                            <li>The notice may be sent only AFTER the default has occurred</li>
+                            <li><em>Bartolomeo v. Marshall</em> (69 A.3d 610, Pa. Sup. Ct. 2013) — the 10-day notice must follow a prior failure to answer</li>
+                            <li><em>Gennaro Asphalt Inc. v. Zarlengo Bros.</em> — a notice sent before the order it relates to is ineffective</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            Because the COM was not due until September 15, the plaintiff was NOT in default on August 25. Consequently, the Notice of Intent was PREMATURE and the judgment is voidable.
+                        </div>
+                        
+                        <h4>Relief Requested</h4>
+                        <div class="relief-list">
+                            <ol>
+                                <li>Declare the Notice of Intent premature and invalid under Pa.R.C.P. § 237.1(a)</li>
+                                <li>Vacate the Judgment of Non-Pros entered on August 25, 2025</li>
+                                <li>Reassign the case to a neutral judge</li>
+                                <li>Award treble damages under the Dragonetti Act and elder-abuse damages</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Document 3: April 13, 2026 Letter -->
-            <div class="document-card">
-                <h3>Emergency Matter – Blocked Filing Ability in Case 444-2023-OC</h3>
-                <div class="date">April 13, 2026 | Delaware County Court of Common Pleas</div>
                 
-                <div class="recipient">
-                    <strong>To:</strong> Honorable President Judge Cartisano, Court of Common Pleas, Delaware County, Pennsylvania
+                <!-- Tab 4: Motion to Wheatcraft Nov 23 -->
+                <div id="tab4" class="tab-content">
+                    <h3>Motion to President Judge Wheatcraft to Vacate All Judge Verwey Orders</h3>
+                    <div class="date">November 23, 2025 | Chester County Court of Common Pleas | Case No. 2025-06422-PL</div>
+                    
+                    <div class="recipient">
+                        <strong>To:</strong> President Judge Wheatcraft, Chester County Court of Common Pleas
+                    </div>
+                    
+                    <div class="content">
+                        <h4>Summary of Relief Requested</h4>
+                        
+                        <div class="relief-list">
+                            <ol>
+                                <li>Reassign all civil actions from Judge Verwey to a neutral judge</li>
+                                <li>Vacate all orders, judgments, and rulings entered by Judge Verwey—including the judgment of non-pros, the sanctions order, and the dismissal of Linnea Roth's claims—on the ground that they are void ab initio</li>
+                                <li>Award reasonable attorney's fees and costs incurred by Plaintiff</li>
+                                <li>Impose monetary sanctions on Defendant Edward L. Perkins, Esq.: treble damages under the Dragonetti Act and statutory elder-abuse damages under 20 Pa.C.S. § 3501</li>
+                                <li>Issue a permanent injunction prohibiting Defendant Perkins from filing any further pleadings</li>
+                                <li>Enter a formal reprimand against Defendant Perkins in the PA Attorney Disciplinary Board's records</li>
+                                <li>Vacate the erroneous dismissal of the co-defendant</li>
+                                <li>Impose monetary sanctions on the Court for the errors</li>
+                            </ol>
+                        </div>
+                        
+                        <h4>Legal Authorities Cited</h4>
+                        <ul>
+                            <li>42 Pa.C.S. §§ 322(b)-(c) (President-Judge authority)</li>
+                            <li>42 Pa.C.S. §§ 8351-8353 (Dragonetti Act)</li>
+                            <li>20 Pa.C.S. § 3501 (Elder-abuse statutes)</li>
+                            <li>Pa.C.J.C. Rule 2.11(A) (disqualification)</li>
+                            <li>Bradley v. United States, 503 U.S. 527 (1992)</li>
+                            <li>In re Mazzoni, 202 Pa. Sup. Ct. 202 (2022)</li>
+                            <li>Munsingwear v. United States, 340 U.S. 36 (1950)</li>
+                        </ul>
+                        
+                        <div class="quote-box">
+                            "The appearance of bias demonstrated by Judge Verwey's statements and conduct, coupled with the procedural defects identified herein, renders continued assignment to Judge Verwey untenable. An order of reassignment will preserve the integrity of the judicial process, conserve appellate resources and ensure that the parties receive a fair and impartial hearing."
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="content">
-                    <div class="alert-box">
-                        <strong>EMERGENCY:</strong> The writer has been BLOCKED from filing any motions in Case 444-2023-OC without explanation, court order, or due process.
+                <!-- Tab 5: Letter to Cartisano Aug 11 -->
+                <div id="tab5" class="tab-content">
+                    <h3>Request for Ruling on Pending Motion to Vacate Recused Judge Durham's Order</h3>
+                    <div class="date">August 11, 2025 | Delaware County Orphans' Court | Case: 444-2023-OC</div>
+                    
+                    <div class="recipient">
+                        <strong>To:</strong> The Honorable Judge Linda Cartisano, President Judge, Orphans Court Division, Delaware County
                     </div>
                     
-                    <h4>I. The Emergency</h4>
-                    
-                    <p>On or about August 7, 2025, the writer attempted to file a motion in the above-referenced matter. Despite being a pro se litigant with standing as a beneficiary of the Mitchell E. and Karlie M. Roth Irrevocable Trust, she was informed by the Supervisor of the Clerks in Orphans Court in Delaware County that she is <strong>unable to file any motions in this case</strong>. No explanation was provided. No court order authorized this restriction. No due process was afforded.</p>
-                    
-                    <p>This obstruction prevents:</p>
-                    <ul>
-                        <li>Filing motions to vacate void orders</li>
-                        <li>Seeking emergency injunctive relief</li>
-                        <li>Protecting beneficial interests in the Trust</li>
-                        <li>Participating in litigation that directly affects property rights</li>
-                    </ul>
-                    
-                    <h4>II. The Underlying Crisis: Tainted Orders Left Standing</h4>
-                    
-                    <div class="quote-box">
-                        "A recused judge's orders are not automatically vacated upon recusal, yet such orders may be fundamentally tainted by the very bias or conflict that necessitated recusal."
+                    <div class="content">
+                        <div class="alert-box">
+                            <strong>Critical Issue:</strong> Motion pending for EIGHT (8) MONTHS without disposition. Interest in the amount of $127.00 per day is accruing from taxpayer money every single day.
+                        </div>
+                        
+                        <h4>Summary</h4>
+                        <p>This letter respectfully requested consideration and ruling on the Motion to Vacate Court Order filed on January 10, 2025, which seeks to vacate the void court orders entered on April 18, 2024 and July 31, 2024.</p>
+                        
+                        <h4>Key Arguments</h4>
+                        <ul>
+                            <li>The continued delay represents a significant waste of judicial resources and taxpayer money</li>
+                            <li>The evidence demonstrates the April 18, 2024 order is void ab initio</li>
+                            <li>The Orphans Court remains obligated to correct its mistakes</li>
+                            <li>The pendency of appellate proceedings does not render existing motions moot</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            <strong>Harm:</strong> Trust assets over $800,000 withheld from elderly special needs beneficiaries, causing grave harm. These vulnerable individuals are deprived of resources necessary for their care and wellbeing.
+                        </div>
+                        
+                        <h4>Documents Enclosed</h4>
+                        <ul>
+                            <li>January 10, 2025 Motion to Vacate</li>
+                            <li>August 1, 2025 Motion to Vacate for Fraud</li>
+                            <li>August 7, 2025 Request for Oral Hearing</li>
+                        </ul>
+                        
+                        <div class="quote-box">
+                            "In totality they make an unassailable case for the post haste vacatur of the defective Court Orders."
+                        </div>
                     </div>
-                    
-                    <p>Under Pennsylvania law:</p>
-                    <ul>
-                        <li>Orders entered by a judge who should have been disqualified are voidable and may be challenged through appropriate motions</li>
-                        <li>When a judge recuses due to actual bias, conflict, or appearance of impropriety, orders issued under that cloud of partiality undermine public confidence in the judiciary</li>
-                        <li>Due process requires that litigants have a meaningful opportunity to challenge orders entered by a judge whose impartiality is compromised</li>
-                    </ul>
-                    
-                    <p>The Pennsylvania Supreme Court has recognized that judicial disqualification goes to the integrity of the judicial process itself. <em>In re M.R., 637 Pa. 505, 153 A.3d 1005 (2017)</em>.</p>
-                    
-                    <h4>III. The Harm</h4>
-                    
-                    <p>The orders left standing by the recused judge have caused, and continue to cause, irreparable harm:</p>
-                    <ul>
-                        <li>Fraudulent trustee appointments remain in effect</li>
-                        <li>Trust assets remain under the unlawful control of the Office of Judicial Support who should never have been appointed</li>
-                        <li>Beneficiaries' rights are being violated daily</li>
-                        <li>The administration of the Mitchell E. and Karlie M. Roth Irrevocable Trust has been corrupted</li>
-                    </ul>
-                    
-                    <div class="highlight-box">
-                        "I am legally entitled to challenge these orders. Yet I am blocked from doing so while my disabled brother is suffering from malnutrition and liver disease and needs access to the funds his parents left him."
-                    </div>
-                    
-                    <h4>IV. The Relief Requested</h4>
-                    
-                    <div class="relief-list">
-                        <ol>
-                            <li>Immediately investigate and rectify the block on filing ability in matter 444-2023-OC, ensuring access to the court system to protect rights;</li>
-                            <li>Review the orders entered by the recused judge to determine whether they should be vacated or reconsidered by a neutral jurist;</li>
-                            <li>Consider the appointment of a special master or neutral judge to review the entire matter given the procedural irregularities; and</li>
-                            <li>Take whatever administrative action is necessary to restore access to justice and ensure the integrity of these proceedings.</li>
-                        </ol>
-                    </div>
-                    
-                    <h4>V. Conclusion</h4>
-                    
-                    <div class="quote-box">
-                        "The right of access to courts is a fundamental constitutional guarantee. <em>Bounds v. Smith, 430 U.S. 817 (1977)</em>. Being blocked from filing motions—without explanation, without authority, and without recourse—violates that right. That this obstruction prevents me from challenging orders entered by a now-recused judge only compounds the injustice."
-                    </div>
-                    
-                    <p><strong>"I am not asking for special treatment. I am asking for what every litigant is entitled to: meaningful access to the courts and a fair hearing before an impartial judge."</strong></p>
                 </div>
+                
+                <!-- Tab 6: Emergency Letter to Cartisano Apr 13 -->
+                <div id="tab6" class="tab-content">
+                    <h3>Emergency Matter – Blocked Filing Ability in Case 444-2023-OC</h3>
+                    <div class="date">April 13, 2026 | Delaware County Court of Common Pleas</div>
+                    
+                    <div class="recipient">
+                        <strong>To:</strong> Honorable President Judge Cartisano, Court of Common Pleas, Delaware County
+                    </div>
+                    
+                    <div class="content">
+                        <div class="alert-box">
+                            <strong>EMERGENCY:</strong> The writer has been BLOCKED from filing any motions in Case 444-2023-OC without explanation, court order, or due process.
+                        </div>
+                        
+                        <h4>I. The Emergency</h4>
+                        <p>On or about August 7, 2025, the writer was informed by the Supervisor of the Clerks in Orphans Court that she is <strong>unable to file any motions in this case</strong>. No explanation was provided. No court order authorized this restriction. No due process was afforded.</p>
+                        
+                        <p>This obstruction prevents:</p>
+                        <ul>
+                            <li>Filing motions to vacate void orders</li>
+                            <li>Seeking emergency injunctive relief</li>
+                            <li>Protecting beneficial interests in the Trust</li>
+                            <li>Participating in litigation affecting property rights</li>
+                        </ul>
+                        
+                        <h4>II. The Underlying Crisis: Tainted Orders Left Standing</h4>
+                        
+                        <div class="quote-box">
+                            "A recused judge's orders are not automatically vacated upon recusal, yet such orders may be fundamentally tainted by the very bias or conflict that necessitated recusal."
+                        </div>
+                        
+                        <p><em>In re M.R., 637 Pa. 505, 153 A.3d 1005 (2017)</em> — Judicial disqualification goes to the integrity of the judicial process itself.</p>
+                        
+                        <h4>III. The Harm</h4>
+                        <ul>
+                            <li>Fraudulent trustee appointments remain in effect</li>
+                            <li>Trust assets remain under unlawful control</li>
+                            <li>Beneficiaries' rights violated daily</li>
+                            <li>Trust administration corrupted</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            "I am legally entitled to challenge these orders. Yet I am blocked from doing so while my disabled brother is suffering from malnutrition and liver disease and needs access to the funds his parents left him."
+                        </div>
+                        
+                        <h4>IV. Relief Requested</h4>
+                        <div class="relief-list">
+                            <ol>
+                                <li>Immediately investigate and rectify the block on filing ability</li>
+                                <li>Review orders entered by the recused judge</li>
+                                <li>Consider appointment of a special master or neutral judge</li>
+                                <li>Take administrative action to restore access to justice</li>
+                            </ol>
+                        </div>
+                        
+                        <h4>V. Conclusion</h4>
+                        <div class="quote-box">
+                            "The right of access to courts is a fundamental constitutional guarantee. <em>Bounds v. Smith, 430 U.S. 817 (1977)</em>. Being blocked from filing motions—without explanation, without authority, and without recourse—violates that right."
+                        </div>
+                        
+                        <p><strong>"I am not asking for special treatment. I am asking for what every litigant is entitled to: meaningful access to the courts and a fair hearing before an impartial judge."</strong></p>
+                    </div>
+                </div>
+                
             </div>
             
         </div>
@@ -478,6 +700,22 @@
         <p>Appellate Docket: <a href="#">No. 1409 EDA 2024</a> (Superior Court of Pennsylvania)</p>
         <p style="margin-top: 20px; font-size: 12px; color: #666;">This website documents ongoing legal proceedings. All information is a matter of public record.</p>
     </div>
+    
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbtn;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tabbtn = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabbtn.length; i++) {
+                tabbtn[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
     
 </body>
 </html>
